@@ -1,60 +1,39 @@
 import { useEffect, useState } from "react";
-import "./Slider.css";
 
-export default function Slider({ images }: any) {
-  const [activeIndex, setActiveIndex] = useState(0);
+const images = [
+  "https://via.placeholder.com/1000x400/0000FF/FFFFFF?text=Image+1",
+  "https://via.placeholder.com/1000x400/FF0000/FFFFFF?text=Image+2",
+  "https://via.placeholder.com/1000x400/00FF00/FFFFFF?text=Image+3",
+];
+
+const Slider = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((activeIndex + 1) % images.length);
+    const intervalId = setInterval(() => {
+      setCurrentSlide((currentSlide + 1) % images.length);
     }, 3000);
-    return () => clearInterval(interval);
-  }, [activeIndex, images.length]);
 
-  const getPrevIndex = (index: any) => {
-    if (index === 0) {
-      return images.length - 1;
-    } else {
-      return index - 1;
-    }
-  };
+    return () => clearInterval(intervalId);
+  }, [currentSlide]);
 
-  const getNextIndex = (index: any) => {
-    if (index === images.length - 1) {
-      return 0;
-    } else {
-      return index + 1;
-    }
-  };
   return (
-    <>
-      <div className="carousel-container">
-        {images.map((image: any, index: any) => (
-          <div
-            key={index}
-            className={`carousel-slide ${
-              index === activeIndex ? "active" : ""
-            }`}
-            style={{
-              backgroundImage: `url(${image.url})`,
-              opacity: index === activeIndex ? 1 : 0.5,
-              zIndex: index === activeIndex ? 1 : 0,
-            }}
-          ></div>
-        ))}
-        <div
-          className="prev-slide"
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      {images.map((imageUrl, index) => (
+        <img
+          key={index}
+          src={imageUrl}
+          alt={`Slide ${index}`}
           style={{
-            backgroundImage: `url(${images[getPrevIndex(activeIndex)]})`,
+            marginLeft: index === 0 ? 0 : 20,
+            marginRight: index === images.length - 1 ? 0 : 20,
+            opacity: index === currentSlide ? 1 : 0,
+            transition: "opacity 1s ease-in-out",
           }}
-        ></div>
-        <div
-          className="next-slide"
-          style={{
-            backgroundImage: `url(${images[getNextIndex(activeIndex)]})`,
-          }}
-        ></div>
-      </div>
-    </>
+        />
+      ))}
+    </div>
   );
-}
+};
+
+export default Slider;
