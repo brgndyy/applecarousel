@@ -1,26 +1,8 @@
-.slider {
+.carousel-container{
+    width: 80%;
+    height: 600px;
     position: relative;
-    height: 400px;
-    width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  
-  .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
+    display: flex;
+    justify-content: center;
 
-    transition: opacity 0.5s;
-  }
-  
-  .slide.active {
-    opacity: 0.5;
-    width: 50%;
-  }
-  
-  .slide.side {
-    opacity: 0.8;
-
-  }
+}
