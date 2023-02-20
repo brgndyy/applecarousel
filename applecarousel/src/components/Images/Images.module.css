@@ -1,37 +1,34 @@
 
-.img{
+
+.img {
     width: 300px;
     height: 300px;
     object-fit: cover;
     margin: 10px;
     border-radius: 20px;
-    
-}
-
-.active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    transition: transform 0.5s, opacity 0.3s;
+  }
+  
+  .active {
     opacity: 1;
-}
-
-.prev{
+    
+    transform: translateX(0%);
+  }
+  
+  .prev {
     opacity: 0.4;
-    animation: moveLeft;
-    animation-duration: 0.5s;
-    scale: 0.9;
-}
-
-.next{
+    transform: translateX(-100%) scale(0.9);
+  }
+  
+  .next {
     opacity: 0.4;
-    animation: moveLeft;
-    animation-duration: 0.5s;
-    scale: 0.9;
-}
+    transform: translateX(100%) scale(0.9);
+  }
 
 
-@keyframes moveLeft{
-    from{
-        transform: translateX(0);
-    }
-    to{
-        transform: translateX(-100%);
-    }
-}
