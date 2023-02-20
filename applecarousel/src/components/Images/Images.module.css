@@ -1,7 +1,4 @@
-.img_container{
-    display: flex;
 
-}
 .img{
     width: 300px;
     height: 300px;
@@ -10,6 +7,30 @@
     border-radius: 20px;
 }
 
+.active {
+    opacity: 1;
+}
+
 .prev{
     opacity: 0.4;
+    animation: moveLeft;
+    animation-duration: 0.5s;
+    scale: 0.9;
+}
+
+.next{
+    opacity: 0.4;
+    animation: moveLeft;
+    animation-duration: 0.5s;
+    scale: 0.9;
+}
+
+
+@keyframes moveLeft{
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
 }
