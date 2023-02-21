@@ -21,25 +21,126 @@
     transform: translateX(0%);
   }
   
-  .prev_in {
-   
-    transform: translateX(-100%) scale(0.9);
-    animation-name: plustOpacity;
-    animation-duration: 1s;
+  .prev_in  {
+    animation-name: prev_in;
+    animation-duration: 0.3s;
     animation-fill-mode: forwards;
+  }
+
+  .prev_out  {
+    animation-name: prev_out;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  .next_in {
+    animation-name: next_in;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+  }
+  .next_out {
+    animation-name: next_out;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+
+  .prev {
+    opacity: 0.6;
+    transform: translateX(-100%) scale(0.9);
   }
   
   .next {
-    opacity: 0.4;
+    opacity: 0.6;
     transform: translateX(100%) scale(0.9);
   }
 
 
-  @keyframes minusOpacity{
+
+.active_right{
+  animation-name: active_right;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.active_left{
+  animation-name: active_left;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+
+
+
+
+  /* keyframes */
+
+
+  @keyframes prev_in{
     from{
       opacity: 1;
+      transform: translateX(0%);
     }
     to{
-      opacity: 0.4;
+      opacity: 0.6;
+      transform: translateX(-100%);
     }
   }
+
+  @keyframes prev_out{
+    from{
+      opacity: 0.6;
+      transform: translateX(-100%);
+    }
+    to{
+      opacity: 0;
+      transform: translateX(-200%);
+    }
+  }
+
+
+  @keyframes next_in{
+    from{
+      opacity: 0;
+      transform: translateX(200%);
+    }
+    to{
+      opacity: 0.6;
+      transform: translateX(100%);
+    }
+  }
+
+
+@keyframes next_out{
+  from{
+    opacity: 0.6;
+    transform: translateX(100%);
+  }
+  to{
+    opacity: 0;
+    transform: translateX(0%);
+  }
+}
+
+
+@keyframes active_right{
+  from{
+    opacity: 0.6;
+    transform: translateX(200%);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes active_left{
+  from{
+    opacity: 1;
+    transform: translateX(000%);
+  }
+  to{
+    opacity: 0.6;
+    transform: translateX(-100%);
+  }
+}
