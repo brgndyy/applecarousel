@@ -12,7 +12,7 @@
     right: 0;
     bottom: 0;
     margin: auto;
-    transition: transform 0.5s, opacity 0.3s;
+    transition: all 0.5s;
   }
   
   .active {
@@ -21,9 +21,12 @@
     transform: translateX(0%);
   }
   
-  .prev {
-    opacity: 0.4;
+  .prev_in {
+   
     transform: translateX(-100%) scale(0.9);
+    animation-name: plustOpacity;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
   }
   
   .next {
@@ -32,3 +35,11 @@
   }
 
 
+  @keyframes minusOpacity{
+    from{
+      opacity: 1;
+    }
+    to{
+      opacity: 0.4;
+    }
+  }
