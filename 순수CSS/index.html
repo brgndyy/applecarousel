@@ -19,16 +19,16 @@
     .main_card {
       height: 100%;
       width: 100%;
-      background-color: rgb(208, 208, 208);
+      background-color: rgb(255, 255, 255);
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .slide_container {
-      width: 80%;
+      width: 100%;
       height: 50%;
-      background-color: rgb(175, 175, 175);
+      background-color: rgb(205, 175, 175);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -45,12 +45,91 @@
     }
 
     .prev_img {
-      opacity: 0.6;
+      opacity: 0.3;
       scale: 0.9;
     }
     .next_img {
-      opacity: 0.6;
+      opacity: 0.3;
       scale: 0.9;
+    }
+
+    /* 맨왼쪽 이미지가 나가는 애니메이션 */
+
+    .prev_img_out {
+      animation-name: prev_img_out;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes prev_img_out {
+      from {
+        transform: translateX(0);
+        opacity: 0.3;
+      }
+      to {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+    }
+
+    /* 가운데 이미지가 맨 왼쪽 이미지로 들어오는 애니메이션 */
+
+    .active_img_out {
+      animation-name: active_img_out;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes active_img_out {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+        scale: 1;
+      }
+      to {
+        transform: translateX(-134%);
+        opacity: 0.3;
+        scale: 0.9;
+      }
+    }
+
+    /* 맨 오른쪽 이미지가 가운데 이미지로 들어오는 애니메이션 */
+
+    .next_img_out {
+      animation-name: next_img_out;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes next_img_out {
+      from {
+        transform: translateX(0);
+        opacity: 0.3;
+        scale: 0.9;
+      }
+      to {
+        transform: translateX(-100%);
+        opacity: 1;
+        scale: 1;
+      }
+    }
+
+    /* 맨 오른쪽 이미지로 새로운 이미지가 들어오는 애니메이션 */
+    .next_img_in {
+      animation-name: next_img_in;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes next_img_in {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 0.3;
+      }
     }
   </style>
 
@@ -58,22 +137,67 @@
     <div class="main_card">
       <div class="slide_container">
         <div class="img_container">
-          <img src="1.jpeg" alt="1" class="img_item prev_img" />
+          <img
+            id="prev_img"
+            src="1.jpeg"
+            alt="1"
+            class="img_item prev_img prev_img_out"
+          />
         </div>
         <div class="img_container">
-          <img src="2.jpeg" alt="2" class="img_item active_img" />
+          <img
+            id="current_img"
+            src="2.jpeg"
+            alt="2"
+            class="img_item active_img active_img_out"
+          />
         </div>
         <div class="img_container">
-          <img src="3.jpeg" alt="3" class="img_item next_img" />
+          <img
+            id="next_img"
+            src="3.jpeg"
+            alt="3"
+            class="img_item next_img next_img_out"
+          />
         </div>
       </div>
     </div>
     <script>
-      const images = [
-        "https://via.placeholder.com/1000x400/0000FF/FFFFFF?text=Image+1",
-        "https://via.placeholder.com/1000x400/FF0000/FFFFFF?text=Image+2",
-        "https://via.placeholder.com/1000x400/00FF00/FFFFFF?text=Image+3",
-      ];
+      const prevImg = document.getElementById("prev_img");
+      const activeImg = document.getElementById("current_img");
+      const nextImg = document.getElementById("next_img");
+
+      let count = 0;
+
+      const changeImg = () => {
+        setInterval(() => {
+          if (
+            !prevImg.classList.contains("prev_img_out") &&
+            !activeImg.classList.contains("active_img_out") &&
+            !nextImg.classList.contains("next_img_out") &&
+            !nextImg.classList.contains("next_img_in")
+          ) {
+            prevImg.classList.add("prev_img_out");
+            prevImg.src = `${count + 1}.jpeg`;
+            activeImg.classList.add("active_img_out");
+            activeImg.src = `${count + 2}.jpeg`;
+            nextImg.classList.add("next_img_out");
+            nextImg.classList.add("next_img_in");
+          } else {
+            activeImg.classList.remove("active_img_out");
+            prevImg.classList.remove("prev_img_out");
+            nextImg.classList.remove("next_img_out");
+            nextImg.classList.remove("next_img_in");
+          }
+
+          count++;
+          if (count > 5) {
+            count = 0;
+          }
+        }, 3000);
+      };
+
+      changeImg();
     </script>
   </body>
 </html>
