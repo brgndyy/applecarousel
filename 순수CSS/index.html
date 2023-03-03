@@ -59,6 +59,11 @@
       scale: 0.9;
     }
 
+    .hide_img {
+      opacity: 0.1;
+      scale: 0.9;
+    }
+
     /* 맨왼쪽 이미지가 나가는 애니메이션 */
 
     .prev_img_out {
@@ -99,7 +104,7 @@
       }
     }
 
-    /* 맨 오른쪽 이미지가 가운데 이미지로 들어오는 애니메이션 */
+    /* 오른쪽 이미지가 가운데 이미지로 들어오는 애니메이션 */
 
     .next_img_out {
       animation-name: next_img_out;
@@ -114,13 +119,13 @@
         scale: 0.9;
       }
       to {
-        transform: translateX(-100%);
+        transform: translateX(-134%);
         opacity: 1;
         scale: 1;
       }
     }
 
-    /* 맨 오른쪽 이미지로 새로운 이미지가 들어오는 애니메이션 */
+    /* 오른쪽 이미지에서 새로운 이미지가 들어오는 애니메이션 */
     .next_img_in {
       animation-name: next_img_in;
       animation-duration: 0.5s;
@@ -158,13 +163,16 @@
         </div>
       </div>
     </div>
+
     <script>
       const prevImg = document.getElementById("prev_img");
       const activeImg = document.getElementById("current_img");
       const nextImg = document.getElementById("next_img");
-      let nextImgCount = 4;
 
-      let count = 1;
+      let prevImgCount = 1;
+      let activeImgCount = prevImgCount + 1;
+      let nextImgCount = prevImgCount + 2;
+      let hideImgCount = prevImg + 3;
 
       const changeImg = () => {
         setInterval(() => {
@@ -174,25 +182,24 @@
             !nextImg.classList.contains("next_img_out") &&
             !nextImg.classList.contains("next_img_in")
           ) {
-            prevImg.src = `${count + 1}.jpeg`;
+            prevImg.src = `${prevImgCount}.jpeg`;
             prevImg.classList.add("prev_img_out");
+
+            activeImg.src = `${activeImgCount}.jpeg`;
             activeImg.classList.add("active_img_out");
 
             nextImg.src = `${nextImgCount}.jpeg`;
-            console.log(nextImgCount);
             nextImg.classList.add("next_img_out");
             nextImg.classList.add("next_img_in");
           } else {
             activeImg.classList.remove("active_img_out");
             prevImg.classList.remove("prev_img_out");
-
-            nextImg.classList.remove("next_img_out");
             nextImg.classList.remove("next_img_in");
+            nextImg.classList.remove("next_img_out");
           }
-
-          count++;
-          if (count > 5) {
-            count = 0;
+          prevImgCount++;
+          if (prevImgCount === 4) {
+            prevImgCount = 0;
           }
         }, 3000);
       };
