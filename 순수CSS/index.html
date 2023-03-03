@@ -48,6 +48,12 @@
       opacity: 0.3;
       scale: 0.9;
     }
+
+    .active_img {
+      opacity: 1;
+      scale: 1;
+    }
+
     .next_img {
       opacity: 0.3;
       scale: 0.9;
@@ -137,28 +143,18 @@
     <div class="main_card">
       <div class="slide_container">
         <div class="img_container">
-          <img
-            id="prev_img"
-            src="1.jpeg"
-            alt="1"
-            class="img_item prev_img prev_img_out"
-          />
+          <img id="prev_img" src="1.jpeg" alt="1" class="img_item prev_img" />
         </div>
         <div class="img_container">
           <img
             id="current_img"
             src="2.jpeg"
             alt="2"
-            class="img_item active_img active_img_out"
+            class="img_item active_img"
           />
         </div>
         <div class="img_container">
-          <img
-            id="next_img"
-            src="3.jpeg"
-            alt="3"
-            class="img_item next_img next_img_out"
-          />
+          <img id="next_img" src="3.jpeg" alt="3" class="img_item next_img" />
         </div>
       </div>
     </div>
@@ -166,8 +162,9 @@
       const prevImg = document.getElementById("prev_img");
       const activeImg = document.getElementById("current_img");
       const nextImg = document.getElementById("next_img");
+      let nextImgCount = 4;
 
-      let count = 0;
+      let count = 1;
 
       const changeImg = () => {
         setInterval(() => {
@@ -177,15 +174,18 @@
             !nextImg.classList.contains("next_img_out") &&
             !nextImg.classList.contains("next_img_in")
           ) {
-            prevImg.classList.add("prev_img_out");
             prevImg.src = `${count + 1}.jpeg`;
+            prevImg.classList.add("prev_img_out");
             activeImg.classList.add("active_img_out");
-            activeImg.src = `${count + 2}.jpeg`;
+
+            nextImg.src = `${nextImgCount}.jpeg`;
+            console.log(nextImgCount);
             nextImg.classList.add("next_img_out");
             nextImg.classList.add("next_img_in");
           } else {
             activeImg.classList.remove("active_img_out");
             prevImg.classList.remove("prev_img_out");
+
             nextImg.classList.remove("next_img_out");
             nextImg.classList.remove("next_img_in");
           }
