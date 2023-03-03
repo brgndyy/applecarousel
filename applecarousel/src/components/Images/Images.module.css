@@ -1,4 +1,13 @@
 
+.img_container {
+  display: flex;
+  justify-content: space-between; /* 이미지 사이에 공간을 동일하게 분배 */
+  align-items: center; /* 이미지를 수직 가운데 정렬 */
+  width: 100%; /* 이미지 컨테이너의 너비를 100%로 설정 */
+  height: 300px; /* 이미지 컨테이너의 높이를 지정 */
+  overflow: hidden; /* 이미지가 넘치는 경우 숨기기 */
+}
+
 
 .img {
     width: 300px;
@@ -13,6 +22,7 @@
     bottom: 0;
     margin: auto;
     transition: all 0.5s;
+
   }
   
   .active {
@@ -75,7 +85,7 @@
 
   /* keyframes */
 
-
+/* 
   @keyframes prev_in{
     from{
       opacity: 1;
@@ -143,4 +153,4 @@
     opacity: 0.6;
     transform: translateX(-100%);
   }
-}
+}  */

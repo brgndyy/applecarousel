@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./Slider.css";
 import Images from "./Images/Images";
 
