@@ -5,5 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Practice</title>
   </head>
-  <body></body>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+    }
+
+    .main_card {
+      height: 100%;
+      width: 100%;
+      background-color: rgb(208, 208, 208);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide_container {
+      width: 80%;
+      height: 50%;
+      background-color: rgb(175, 175, 175);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .img_item {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      margin: 30px;
+      border-radius: 20px;
+    }
+
+    .prev_img {
+      opacity: 0.6;
+      scale: 0.9;
+    }
+    .next_img {
+      opacity: 0.6;
+      scale: 0.9;
+    }
+  </style>
+
+  <body>
+    <div class="main_card">
+      <div class="slide_container">
+        <div class="img_container">
+          <img src="1.jpeg" alt="1" class="img_item prev_img" />
+        </div>
+        <div class="img_container">
+          <img src="2.jpeg" alt="2" class="img_item active_img" />
+        </div>
+        <div class="img_container">
+          <img src="3.jpeg" alt="3" class="img_item next_img" />
+        </div>
+      </div>
+    </div>
+    <script>
+      const images = [
+        "https://via.placeholder.com/1000x400/0000FF/FFFFFF?text=Image+1",
+        "https://via.placeholder.com/1000x400/FF0000/FFFFFF?text=Image+2",
+        "https://via.placeholder.com/1000x400/00FF00/FFFFFF?text=Image+3",
+      ];
+    </script>
+  </body>
 </html>
